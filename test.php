@@ -1,3 +1,9 @@
 <?php
 
-echo 'cmc-uploader';
+class TestClass
+{
+	public static function test()
+	{
+		echo 'cmc-uploader';
+	}
+}
