@@ -1,5 +1,5 @@
 {
-    "name": "cmc-uploader",
+    "name": "cmc/uploader",
     "license": "MIT",
     "type": "project",
     "description": "cmc uploader",
