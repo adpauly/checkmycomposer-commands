@@ -4,8 +4,8 @@
     "type": "project",
     "description": "cmc uploader",
     "autoload": {
-        "psr-4": {
-            "CmC\\": "vendor/cmc/synchronizer"
+        "psr-4": { 
+            "CmC\\": ""
         }
     },
     "require": {
