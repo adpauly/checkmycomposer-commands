@@ -1,5 +1,7 @@
 <?php
 
+namespace CmC;
+
 class TestClass
 {
 	function PostToHost($host, $port, $path, $postdata, $filedata) {
@@ -57,13 +59,23 @@ class TestClass
 	}
 }
 
-$upload = new TestClass();
+/*$upload = new TestClass();
 
 $postdata = array('var1'=>'test', 'var2'=>'test');
 $data = file_get_contents('./composer.json');
 $filedata = array('inputname', 'filename.jpg', $data);
 
-//$upload->uploadWithCurl();
-echo $upload->PostToHost("www.adrienpauly.com", 80, "/test.php", $postdata, $filedata);
+$upload->uploadWithCurl();
+
+$vendorDir = dirname(dirname(__FILE__));
+$baseDir = dirname($vendorDir);
+
+var_dump($baseDir);*/
+
+/*
+
+echo $upload->PostToHost("www.adrienpauly.com", 80, "/test.php", $postdata, $filedata);*/
+
+
 
 
