@@ -4,7 +4,7 @@
     "type": "project",
     "description": "cmc uploader",
     "autoload": {
-        "psr-4": { "CmC": "" }
+        "psr-4\\": { "CmC": "" }
     },
     "require": {
         "php": ">=5.3.3",
