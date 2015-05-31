@@ -1,5 +1,7 @@
 <?php
 
+namespace CmC;
+
 class TestClass
 {
 	function PostToHost($host, $port, $path, $postdata, $filedata) {
