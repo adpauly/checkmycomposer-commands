@@ -2,7 +2,7 @@
 
 namespace CmC;
 
-class TestClass
+class Synchronizer
 {
 	function PostToHost($host, $port, $path, $postdata, $filedata) {
 	     $data = "";
