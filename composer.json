@@ -4,7 +4,7 @@
     "type": "project",
     "description": "cmc uploader",
     "autoload": {
-        "psr-4": {
+        "psr-4": { 
             "CmC\\": ""
         }
     },
