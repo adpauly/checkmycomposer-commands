@@ -1,10 +1,10 @@
 {
-    "name": "cmc/synchronizer",
+    "name": "checkmycomposer/commands",
     "license": "MIT",
     "type": "project",
-    "description": "cmc uploader",
+    "description": "Commands to check your Composer dependencies and synchronize your project with www.checkmycomposer.com.",
     "autoload": {
-        "psr-4": { 
+        "psr-4": {
             "CmC\\": ""
         }
     },
