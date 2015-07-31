@@ -22,16 +22,11 @@ class ComposerHelper implements ComposerHelperInterface
      */
     public static function getLatestPackages(array $allRequirements, $stability = 'stable', $sourceRepo = null)
     {
-        if (!$sourceRepo) {
-            $sourceRepo = new CompositeRepository(Factory::createDefaultRepositories(new NullIO()));
-        }
-
-        $pool = new Pool($stability);
-        $pool->addRepository($sourceRepo);
+        $pool = static::getPool($stability, $sourceRepo);
 
         foreach ($allRequirements as $key => $requirement) {
             try {
-                $latestPackages = static::getLatestPackage($requirement, $pool, $sourceRepo);
+                $latestPackages = static::getLatestPackage($requirement, $pool);
             } catch(\InvalidArgumentException $e) {
                 $latestPackages = null;
             }
@@ -156,5 +151,17 @@ class ComposerHelper implements ComposerHelperInterface
         $composerFile = new JsonFile($path, $rfs);
 
         return $composerFile;
+    }
+
+    public static function getPool($stability = 'stable', $sourceRepo = null)
+    {
+        if (!$sourceRepo) {
+            $sourceRepo = new CompositeRepository(Factory::createDefaultRepositories(new NullIO()));
+        }
+
+        $pool = new Pool($stability);
+        $pool->addRepository($sourceRepo);
+
+        return $pool;
     }
 }

@@ -19,7 +19,7 @@ class CheckMyComposer
         $output->writeLn('');
 
         $requirements = ComposerHelper::getInstalledPackages();
-        $requirements = ComposerHelper::getLatestPackages($requirements, 'stable');
+        $requirements = ComposerHelper::getLatestPackages($requirements);
         $requirements = ParserHelper::unsetProperty($requirements, 'constraintsOfVersion');
         $requirements = ParserHelper::parseStatuses($requirements, array('status', 'statusInConstraints'));
 
