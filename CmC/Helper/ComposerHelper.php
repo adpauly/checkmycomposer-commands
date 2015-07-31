@@ -11,6 +11,7 @@ use Composer\Package\Version\VersionSelector;
 use Composer\Config;
 use Composer\Util\RemoteFilesystem;
 use Composer\Package\CompletePackage;
+use Composer\Package\Version\VersionParser;
 
 class ComposerHelper implements ComposerHelperInterface
 {
@@ -19,11 +20,18 @@ class ComposerHelper implements ComposerHelperInterface
     /**
      * {@inheritDoc}
      */
-    public static function getLatestPackages(array $allRequirements)
+    public static function getLatestPackages(array $allRequirements, $stability = 'stable', $sourceRepo = null)
     {
+        if (!$sourceRepo) {
+            $sourceRepo = new CompositeRepository(Factory::createDefaultRepositories(new NullIO()));
+        }
+
+        $pool = new Pool($stability);
+        $pool->addRepository($sourceRepo);
+
         foreach ($allRequirements as $key => $requirement) {
             try {
-                $latestPackages = static::getLatestPackage($requirement);
+                $latestPackages = static::getLatestPackage($requirement, $pool, $sourceRepo);
             } catch(\InvalidArgumentException $e) {
                 $latestPackages = null;
             }
@@ -47,17 +55,8 @@ class ComposerHelper implements ComposerHelperInterface
     /**
      * {@inheritDoc}
      */
-    public static function getLatestPackage($requirement, $stability = 'stable', $sourceRepo = null)
+    public static function getLatestPackage($requirement, Pool $pool)
     {
-        //echo PHP_EOL.microtime(true).PHP_EOL;
-        if (!$sourceRepo) {
-            $sourceRepo = new CompositeRepository(Factory::createDefaultRepositories(new NullIO()));
-        }
-
-        $pool = new Pool($stability);
-
-        $pool->addRepository($sourceRepo);
-        //echo microtime(true).PHP_EOL;
         // Find the latest package
         $versionSelector = new VersionSelector($pool);
         $latestPackage = $versionSelector->findBestCandidate($requirement['packageName'], null);
@@ -67,28 +66,10 @@ class ComposerHelper implements ComposerHelperInterface
         //     throw new \InvalidArgumentException("Could not find package {$requirement['packageName']}" . ($requirement['constraintsOfVersion'] ? " with version {$requirement['constraintsOfVersion']}." : " with stability $stability."));
         // }
 
-        //echo microtime(true).PHP_EOL;
         return array(
             'latestPackage' => $latestPackage,
             'latestPackageInConstraints' => $latestPackageInConstraints,
         );
-    }
-
-    public static function getLatestPackage2($requirement, $stability = 'stable')
-    {
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://packagist.org/feeds/package.'.$requirement['packageName'].'.rss'); //http://local.cmc.com/
-        curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-        $response = curl_exec($ch);
-
-        curl_close($ch);
-
-        $response = simplexml_load_string($response);
-
-        return $response;
     }
 
     /**

@@ -2,6 +2,8 @@
 
 namespace CmC\Helper;
 
+use Composer\DependencyResolver\Pool;
+
 interface ComposerHelperInterface
 {
     /**
@@ -9,7 +11,7 @@ interface ComposerHelperInterface
      *
      * @return Array
      */
-    public static function getLatestPackages(array $allRequirements);
+    public static function getLatestPackages(array $allRequirements, $stability = 'stable', $sourceRepo = null);
 
     /**
      * Get installed packages in local repository
@@ -27,7 +29,7 @@ interface ComposerHelperInterface
      *
      * @return Array
      */
-    public static function getLatestPackage($requirement, $stability = 'stable', $sourceRepo = null);
+    public static function getLatestPackage($requirement, Pool $pool);
 
     /**
      * @throws JsonValidationException, InvalidArgumentException

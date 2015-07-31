@@ -13,16 +13,13 @@ class CheckMyComposer
 {
     public static function check()
     {
-        $last = ComposerHelper::getLatestPackage2(array('packageName' => 'symfony/symfony'));
-        var_dump($last);
-        die;
         $output = new ConsoleOutput();
 
         $output->writeLn('Checking dependencies...');
         $output->writeLn('');
 
         $requirements = ComposerHelper::getInstalledPackages();
-        $requirements = ComposerHelper::getLatestPackages($requirements);
+        $requirements = ComposerHelper::getLatestPackages($requirements, 'stable');
         $requirements = ParserHelper::unsetProperty($requirements, 'constraintsOfVersion');
         $requirements = ParserHelper::parseStatuses($requirements, array('status', 'statusInConstraints'));
 
@@ -32,8 +29,6 @@ class CheckMyComposer
 
     public static function synchronize()
     {
-        //$composerContent = file_get_contents('composer.json');
-
         $output = new ConsoleOutput();
 
         if (!$syncToken = static::tokenExists()) {
