@@ -2,9 +2,12 @@
 
 namespace CmC\Helper;
 
-class UploadHelper
+class UploadHelper implements UploadHelperInterface
 {
-    public static function uploadWithCurl($requirements, $syncToken)
+    /**
+     * {@inheritDoc}
+     */
+    public static function uploadWithCurl(array $requirements, $syncToken)
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "http://local.cmc.com/app_dev.php/synchronize"); //http://local.cmc.com/
@@ -23,7 +26,10 @@ class UploadHelper
         return $response;
     }
 
-    public static function uploadWithSocket($requirements, $syncToken)
+    /**
+     * {@inheritDoc}
+     */
+    public static function uploadWithSocket(array $requirements, $syncToken)
     {
         //create the final string to be posted using implode()
         $post_string = 'requirements='.serialize($requirements).'&sync_token='.$syncToken;

@@ -13,6 +13,9 @@ class CheckMyComposer
 {
     public static function check()
     {
+        $last = ComposerHelper::getLatestPackage2(array('packageName' => 'symfony/symfony'));
+        var_dump($last);
+        die;
         $output = new ConsoleOutput();
 
         $output->writeLn('Checking dependencies...');

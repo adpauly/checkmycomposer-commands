@@ -2,19 +2,22 @@
 
 namespace CmC\Helper;
 
-class PrintHelper
+class PrintHelper implements PrintHelperInterface
 {
-    public static function printTable($output, $requirements)
+     /**
+     * {@inheritDoc}
+     */
+    public static function printTable($output, array $requirements)
     {
         if (count($requirements)) {
             $firstLineHeaders = static::getFirstLineHeaders();
             $scndLineHeaders = static::getScndLineHeaders();
             $maxWidths = static::maxWidths(array_merge(array('firstLineHeaders' => $firstLineHeaders), array('scndLineHeaders' => $scndLineHeaders), $requirements));
-            $typesOfStatus = static::getTypesOfStatus();
+            $typesOfStatus = static::getLabelStatuses();
 
             static::printHeaders($output, $firstLineHeaders, $maxWidths);
             static::printHeaders($output, $scndLineHeaders, $maxWidths);
-            static::printVerticalLine($output, $firstLineHeaders, $maxWidths);
+            static::printHorizontalSeparator($output, $firstLineHeaders, $maxWidths);
 
             foreach ($requirements as $requirement) {
                 $line = '| ';
@@ -36,7 +39,10 @@ class PrintHelper
         }
     }
 
-    private static function printHeaders($output, $headers, $maxWidths)
+    /**
+     * {@inheritDoc}
+     */
+    public static function printHeaders($output, $headers, $maxWidths)
     {
         $line = '| ';
         foreach ($headers as $key => $headerValue) {
@@ -46,7 +52,10 @@ class PrintHelper
         $output->writeLn($line);
     }
 
-    private static function printVerticalLine($output, $headers, $maxWidths)
+    /**
+     * {@inheritDoc}
+     */
+    public static function printHorizontalSeparator($output, $headers, $maxWidths)
     {
         $totalMaxWidths = array_sum($maxWidths);
         $totalMaxWidths += count($maxWidths); // For each '|' separator
@@ -63,12 +72,15 @@ class PrintHelper
         $output->writeLn($line);
     }
 
-    private static function maxWidths($requirements)
+    /**
+     * {@inheritDoc}
+     */
+    public static function maxWidths(array $valuesProperties)
     {
         // Copy all property keys of requirements
-        $maxWidths = array_fill_keys(array_keys($requirements['firstLineHeaders']), 0);
+        $maxWidths = array_fill_keys(array_keys($valuesProperties['firstLineHeaders']), 0);
 
-        foreach ($requirements as $requirement) {
+        foreach ($valuesProperties as $requirement) {
             foreach ($maxWidths as $property => $maxWidth) {
                 if (strlen($requirement[$property]) > $maxWidth) {
                     $maxWidths[$property] = strlen($requirement[$property]);
@@ -79,7 +91,10 @@ class PrintHelper
         return $maxWidths;
     }
 
-    private static function getFirstLineHeaders()
+    /**
+     * {@inheritDoc}
+     */
+    public static function getFirstLineHeaders()
     {
         return array(
             'packageName' => '',
@@ -91,7 +106,10 @@ class PrintHelper
         );
     }
 
-    private static function getScndLineHeaders()
+    /**
+     * {@inheritDoc}
+     */
+    public static function getScndLineHeaders()
     {
         return array(
             'packageName' => 'Package name',
@@ -103,7 +121,10 @@ class PrintHelper
         );
     }
 
-    public static function getTypesOfStatus()
+    /**
+     * {@inheritDoc}
+     */
+    public static function getLabelStatuses()
     {
         return array(
             -1 => 'outdated',

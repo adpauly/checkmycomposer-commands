@@ -74,6 +74,23 @@ class ComposerHelper implements ComposerHelperInterface
         );
     }
 
+    public static function getLatestPackage2($requirement, $stability = 'stable')
+    {
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://packagist.org/feeds/package.'.$requirement['packageName'].'.rss'); //http://local.cmc.com/
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($ch);
+
+        curl_close($ch);
+
+        $response = simplexml_load_string($response);
+
+        return $response;
+    }
+
     /**
      * {@inheritDoc}
      */

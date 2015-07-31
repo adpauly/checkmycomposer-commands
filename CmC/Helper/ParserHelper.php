@@ -2,7 +2,7 @@
 
 namespace CmC\Helper;
 
-class ParserHelper
+class ParserHelper implements ParserHelperInterface
 {
     /**
      * {@inheritDoc}
@@ -21,7 +21,7 @@ class ParserHelper
      */
     public static function parseStatus(array $requirements, $statusProperty)
     {
-        $typesOfStatus = PrintHelper::getTypesOfStatus();
+        $typesOfStatus = PrintHelper::getLabelStatuses();
 
         foreach ($requirements as $key => $requirement) {
             if (isset($requirement[$statusProperty])) {

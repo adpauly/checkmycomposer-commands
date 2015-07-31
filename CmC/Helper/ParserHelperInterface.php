@@ -27,5 +27,5 @@ interface ParserHelperInterface
      * @param array $requirements
      * @param string name of the property
      */
-    public static function unsetProperty(array $requirements, $property)
+    public static function unsetProperty(array $requirements, $property);
 }
