@@ -9,7 +9,7 @@ interface ComposerHelperInterface
      *
      * @return Array
      */
-    public static function getLatestPackages(Array $allRequirements);
+    public static function getLatestPackages(array $allRequirements);
 
     /**
      * Get installed packages in local repository

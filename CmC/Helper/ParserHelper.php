@@ -5,15 +5,11 @@ namespace CmC\Helper;
 class ParserHelper
 {
     /**
-     * Call parseStatus function for each "status property"
-     * @param array $requirements
-     * @param array $statutesProperties status properties
-     *
-     * @return $requirements
+     * {@inheritDoc}
      */
-    public static function parseStatutes($requirements, $statutesProperties)
+    public static function parseStatuses(array $requirements, array $statusesProperties)
     {
-        foreach ($statutesProperties as $key => $statusProperty) {
+        foreach ($statusesProperties as $key => $statusProperty) {
             $requirements = static::parseStatus($requirements, $statusProperty);
         }
 
@@ -21,13 +17,9 @@ class ParserHelper
     }
 
     /**
-     * Parse status (0|-1) into readable string ("up to date"|"outdated")
-     * @param array $requirements
-     * @param string $statusProperty Name of status property
-     *
-     * @return $requirements
+     * {@inheritDoc}
      */
-    public static function parseStatus($requirements, $statusProperty)
+    public static function parseStatus(array $requirements, $statusProperty)
     {
         $typesOfStatus = PrintHelper::getTypesOfStatus();
 
@@ -43,11 +35,9 @@ class ParserHelper
     }
 
     /**
-     * Unset specified property from array
-     * @param array $requirements
-     * @param string name of the property
+     * {@inheritDoc}
      */
-    public static function unsetProperty($requirements, $property)
+    public static function unsetProperty(array $requirements, $property)
     {
         foreach ($requirements as $key => $requirement) {
             unset($requirements[$key][$property]);

@@ -19,7 +19,7 @@ class ComposerHelper implements ComposerHelperInterface
     /**
      * {@inheritDoc}
      */
-    public static function getLatestPackages(Array $allRequirements)
+    public static function getLatestPackages(array $allRequirements)
     {
         foreach ($allRequirements as $key => $requirement) {
             try {
