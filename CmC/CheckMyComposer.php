@@ -75,8 +75,8 @@ class CheckMyComposer
     }
 
     /**
-     * Return the value of token file (cmc_token|cmc_token.txt) or token env var (cmc_token) if exists
-     * @return string $tokenInFile|$tokenInEnv
+     * Return the value of token file (cmc_token|cmc_token.txt) or "cmc-token" value in composer.json if exists
+     * @return string $tokenInComposer|$tokenInFile
      */
     protected static function tokenExists()
     {
