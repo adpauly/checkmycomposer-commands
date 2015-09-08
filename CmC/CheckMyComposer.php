@@ -36,7 +36,7 @@ class CheckMyComposer
             $output->writeLn('It seems there is no "cmc-token" parameter in your composer.json');
             $output->writeLn('or "cmc_token" file in your project to synchronize your dependencies.');
             $output->writeLn('<info>Please follow this link for more help: http://everythingisawesome.com</info>'.PHP_EOL);
-            exit();
+            exit;
         }
 
         $output->writeLn('Synchronizing your dependencies with CheckMyComposer server...');
