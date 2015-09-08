@@ -60,7 +60,7 @@ class CheckMyComposer
         }
 
         $output->writeLn(PHP_EOL.'<error>Connection with CheckMyComposer\'s server failed (try with php sockets and curl)</error>');
-        $output->writeLn('<info>Please check your connection and follow this link for more help: http://everythingisawesome.com</info>'.PHP_EOL);
+        $output->writeLn('<info>Please check your connection and follow this link for more help: http://www.checkmycomposer.com/help#use-commands</info>'.PHP_EOL);
     }
 
     public static function synchronizerResponse($output, $response)
@@ -80,18 +80,6 @@ class CheckMyComposer
      */
     protected static function tokenExists()
     {
-        // if (!$tokenInFile = @file_get_contents('cmc_token.txt')) {
-        //     $tokenInFile = @file_get_contents('cmc_token');
-        // }
-
-        // $tokenInEnv = getenv('cmc_toke');
-
-        // if (!$tokenInEnv && !$tokenInFile) {
-        //     return false;
-        // }
-
-        // return $tokenInFile ?: $tokenInEnv;
-
         try {
             $composerContent = ComposerHelper::readFile('composer.json');
             $tokenInComposer = $composerContent['extra']['cmc-token'];
