@@ -10,7 +10,7 @@ class UploadHelper implements UploadHelperInterface
     public static function uploadWithCurl(array $requirements, $syncToken)
     {
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, "http://local.cmc.com/app_dev.php/synchronize"); //http://local.cmc.com/
+        curl_setopt($ch, CURLOPT_URL, "http://www.checkmycomposer.com/synchronize");
         curl_setopt($ch, CURLOPT_HEADER, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
@@ -38,13 +38,13 @@ class UploadHelper implements UploadHelperInterface
         $data_length = strlen($post_string);
 
         //let's open the connection
-        if (!$connection = @fsockopen('localhost', 80)) { //local.cmc.com
+        if (!$connection = @fsockopen('www.checkmycomposer.com', 80)) {
             return false;
         }
 
         //sending the data
-        fputs($connection, "POST  /app_dev.php/synchronize  HTTP/1.1\r\n");
-        fputs($connection, "Host:  local.cmc.com \r\n");
+        fputs($connection, "POST  /synchronize  HTTP/1.1\r\n");
+        fputs($connection, "Host:  www.checkmycomposer.com \r\n");
         fputs($connection, "Content-Type: application/x-www-form-urlencoded\r\n");
         fputs($connection, "Content-Length: $data_length\r\n");
         fputs($connection, "Connection: close\r\n\r\n");
@@ -64,6 +64,6 @@ class UploadHelper implements UploadHelperInterface
             return false;
         }
 
-        return substr($res, $delimiterPos + strlen($delimiter));
+        return substr($res, $delimiterPos + strlen($delimiter), -7);
     }
 }
