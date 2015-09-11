@@ -10,7 +10,7 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "composer/composer": "1.0.0-alpha10"
+        "composer/composer": "~1.0.0"
     },
     "config": {
         "bin-dir": "bin"
