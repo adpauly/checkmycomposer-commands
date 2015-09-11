@@ -14,5 +14,6 @@
     },
     "config": {
         "bin-dir": "bin"
-    }
+    },
+    "minimum-stability": "alpha"
 }
