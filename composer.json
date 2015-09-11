@@ -4,7 +4,9 @@
     "type": "project",
     "description": "Commands to check your Composer dependencies and synchronize your project with www.checkmycomposer.com.",
     "autoload": {
-        "psr-4": {"CmC\\": "vendor/checkmycomposer/commands/CmC"}
+        "psr-4": {
+            "CmC\\": ""
+        }
     },
     "require": {
         "php": ">=5.3.3",
