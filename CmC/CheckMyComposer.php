@@ -34,7 +34,7 @@ class CheckMyComposer
         if (!$syncToken = static::tokenExists()) {
             $output->writeLn(PHP_EOL.'<error>Synchronization with CheckMyComposer failed.</error>');
             $output->writeLn('It seems there is no "cmc-token" parameter in your composer.json');
-            $output->writeLn('or "cmc_token" file in your project to synchronize your dependencies.');
+            $output->writeLn('or "cmc_token.txt" file in your project to synchronize your dependencies.');
             $output->writeLn('<info>Please follow this link for more help: http://www.checkmycomposer.com/help#token-missing</info>'.PHP_EOL);
             exit;
         }
