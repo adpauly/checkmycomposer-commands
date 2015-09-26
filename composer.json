@@ -2,7 +2,7 @@
     "name": "checkmycomposer/commands",
     "license": "MIT",
     "type": "project",
-    "description": "Commands to check your Composer dependencies and synchronize your project with www.checkmycomposer.com.",
+    "description": "Commands to check your Composer dependencies and synchronize your project with http://checkmycomposer.com.",
     "autoload": {
         "psr-4": {
             "CmC\\": ""
