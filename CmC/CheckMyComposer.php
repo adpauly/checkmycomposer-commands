@@ -75,7 +75,7 @@ class CheckMyComposer
     }
 
     /**
-     * Return the value of token file (cmc_token|cmc_token.txt) or "cmc-token" value in composer.json if exists
+     * Return the value of token file (cmc_token|cmc_token.txt|cmc-token|cmc-token.txt) or "cmc-token" value in composer.json if exists
      * @return string $tokenInComposer|$tokenInFile
      */
     protected static function tokenExists()
@@ -91,10 +91,10 @@ class CheckMyComposer
             $tokenInFile = @file_get_contents('cmc-token');
         }
 
-        if (!$tokenInFile = @file_get_contents('cmc_token.txt')) {
+        if (!$tokenInFile && !$tokenInFile = @file_get_contents('cmc_token.txt')) {
             $tokenInFile = @file_get_contents('cmc_token');
         }
 
-        return $tokenInComposer ?: $tokenInFile;
+        return $tokenInComposer ? $tokenInComposer : $tokenInFile;
     }
 }
