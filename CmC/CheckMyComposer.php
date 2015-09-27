@@ -91,10 +91,10 @@ class CheckMyComposer
             $tokenInFile = @file_get_contents('cmc-token');
         }
 
-        if (!$tokenInFile = @file_get_contents('cmc_token.txt')) {
+        if (!$tokenInFile && !$tokenInFile = @file_get_contents('cmc_token.txt')) {
             $tokenInFile = @file_get_contents('cmc_token');
         }
 
-        return $tokenInComposer ?: $tokenInFile;
+        return $tokenInComposer ? $tokenInComposer : $tokenInFile;
     }
 }
