@@ -23,7 +23,10 @@ class UploadHelper implements UploadHelperInterface
 
         curl_close($ch);
 
-        return $response;
+        $delimiter = '[start]';
+        $delimiterPos = stripos($response, $delimiter);
+
+        return substr($response, $delimiterPos + strlen($delimiter));
     }
 
     /**
@@ -31,7 +34,7 @@ class UploadHelper implements UploadHelperInterface
      */
     public static function uploadWithSocket(array $requirements, $syncToken)
     {
-        //create the final string to be posted using implode()
+        //create the final string to be posted using implode()a
         $post_string = 'requirements='.serialize($requirements).'&sync_token='.$syncToken;
 
         //we are going to need the length of the data string
