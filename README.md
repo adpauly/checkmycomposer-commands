@@ -8,7 +8,7 @@ Follow this link to get started: http://checkmycomposer.com/getting-started
 
 ## Commands
 
-### Check your dependencies directly in your console
+### Check directly your dependencies in your console
 
 To check your dependencies, type the following command in the directory where your composer.json file is stored.
 
@@ -16,7 +16,7 @@ To check your dependencies, type the following command in the directory where yo
 composer check
 ```
 
-A table will be displayed with all dependencies you are using with several informations as in the following image.
+A table will be displayed with all dependencies you are using with several information as in the following image.
 
 ![composer_check_img](http://checkmycomposer.com/bundles/app/img/help/composer_check.png)
 
