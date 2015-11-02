@@ -40,3 +40,8 @@ _Note:_ As the checking command, you can change the alias of the command ("synch
 
 **Note:** We suggest you to synchronize your projects in production environment (this has more interest to follow real versions used by your projects in production).
 As indicated in Getting Started section, we recommend to store your token in a file (only present in your production server) in this case.
+
+## Contributions
+
+Feedback and suggestions are welcome.
+Feel free to send a pull request!
