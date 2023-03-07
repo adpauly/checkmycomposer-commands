@@ -1,3 +1,5 @@
+**:warning: ABANDONED REPOSITORY. Use https://github.com/fabpot/local-php-security-checker instead.**
+
 # checkmycomposer-commands
 
 This package provides 2 commands to check your Composer dependencies and synchronize your project with http://checkmycomposer.com.
